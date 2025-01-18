@@ -5,7 +5,7 @@ const HeaderNav = () => {
     return ( 
         <>
         <header className="bg-yellow-300 pt-4">
-            <div className="bg-white flex items-end justify-between py-3">
+            <div className="bg-white flex items-end justify-between py-3 pl-28">
             <img src="/RezeptweltLogo.svg" alt="Logo" />
             <nav className="flex gap-4">
                 <Link to={'index'}>Home</Link>

@@ -38,7 +38,7 @@ const FavoriteRecipesSection = () => {
         <section className="text-center mb-14">
             <h2 className="headline font-bold text-[1.5rem] pb-6">Die beliebtesten Rezepte</h2>
             {loading ? (
-                <p>Recipes are loading  ☕️ ...</p>
+                <p>Your favorite Recipes are loading  ☕️ ...</p>
             ) : (
                 <div className="favcard-sect flex justify-center gap-8">
                 {favRecipes?.map((favRecipe) => (

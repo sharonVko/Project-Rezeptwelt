@@ -11,8 +11,8 @@ const LatestRecipecard:React.FC<ILatestRecipecardProps> = ({latestRecipe}) => {
             <img src="/cupIcon.png" alt="Food image" />
                 <div className="bg-slate-100 text-start px-4 py-6">
                     <p className="text-lg pb-4">{latestRecipe.name}</p>
-                    <p className="text-xs pb-4">description  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores, corporis! </p>
-                    <Link to={'/recipes'}>Zum Rezept</Link>
+                    <p className="text-xs pb-4">{latestRecipe.description}</p>
+                    <Link to={`/details/${latestRecipe.id}`}>Zum Rezept</Link>
                 </div>
         </article>
      );

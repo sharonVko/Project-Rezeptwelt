@@ -7,6 +7,7 @@ import Recipepage from './pages/Recipepage'
 import AboutUs from './pages/AboutUs'
 import Detailpage from './pages/Detailpage'
 import Loginpage from './pages/Loginpage'
+import { UserProvider } from './UserContext'
 
 function App() {
   
@@ -31,7 +32,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router}/>
+      <UserProvider> 
+        <RouterProvider router={router}/>
+      </UserProvider>
     </>
   )
 }

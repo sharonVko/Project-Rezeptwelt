@@ -42,7 +42,7 @@ const FavoriteRecipesSection = () => {
             ) : (
                 <div className="favcard-sect flex justify-center gap-8">
                 {favRecipes?.map((favRecipe) => (
-                    <div key={favRecipe.id}>
+                    <div key={favRecipe.rating}>
                         <FavoriteRecipeCard favRecipe={favRecipe}/>
                     </div>
             ))}

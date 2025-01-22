@@ -22,8 +22,16 @@ const Loginpage = () => {
             console.error(result.error);
         }
         // was auch immer wir zurückbekommen, wir loggen es
-       /*  console.dir(result) */
+        console.dir(result)
     };
+    const handleRegister = async () => {
+        const result = await supabase.auth.signUp({
+            email: usernameRef.current.value,
+            password: passwordRef.current.value,
+        });
+        console.log(result);
+        
+    }
 
 
     return ( 
@@ -41,6 +49,9 @@ const Loginpage = () => {
                 ref={passwordRef}  />
 
                 <button className="bg-green-400 py-2 px-5 rounded-2xl" >Log In</button>
+
+                {/* register button for new users */}
+                <button className="bg-blue-400 py-2 px-5 rounded-2xl ml-4" type="button" onClick={handleRegister}>Register</button>
 
             </form>
 

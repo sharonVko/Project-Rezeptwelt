@@ -1,10 +1,17 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { supabase } from "../utils/setupSupabase";
 import { useUserContext } from "../UserContext";
+import { useNavigate } from "react-router-dom";
+
 
 const Loginpage = () => {
     const usernameRef = useRef<HTMLInputElement>(null!);
     const passwordRef = useRef<HTMLInputElement>(null!);
+
+    const [userFeedback, setUserFeedback] = useState<string | null>(null)
+    const [isError, setIsError] = useState<boolean>(false);
+
+    const navigate = useNavigate();
 
     const {setUser} = useUserContext()
 
@@ -18,8 +25,13 @@ const Loginpage = () => {
         //falls es einen user gibt, übermitteln wir ihn an den context
         if(result.data.user) {
             setUser(result.data.user);
+            setUserFeedback("Willkommen zurück! Dein Login war erfolgreich.");
+            setIsError(false);
+            navigate('/'); // wenn erfolgreich -> Wechsel zu home
         } else {
-            console.error(result.error);
+            console.error('Login failed',result.error);
+            setUserFeedback("Sorry! Der Login ist fehlgeschlagen.Bitte überprüfe dein Passwort und deine e-mail Adresse.");
+            setIsError(true);
         }
         // was auch immer wir zurückbekommen, wir loggen es
         console.dir(result)
@@ -29,14 +41,24 @@ const Loginpage = () => {
             email: usernameRef.current.value,
             password: passwordRef.current.value,
         });
-        console.log(result);
+        if (result.error) {
+            console.error('Registration failed',result.error);
+            setUserFeedback("Sorry, die Registrierung ist fehlgeschlagen!");
+            setIsError(true);
+        } else {
+            console.log(result);
+            setUserFeedback("Glückwunsch!Die Registrierung war erfolgreich!");
+            setIsError(false)
+        }
         
     }
 
 
     return ( 
-        <div className="p-8 border-2 border-gray-400 rounded-md m-6">
-            <form onSubmit={handleSubmit} >
+        <div className="p-8 border-2 border-yellow-300 bg-stone-100 rounded-md m-6 text-center">
+            {userFeedback && <p className={`text-xl font-semibold mb-4 ${isError? "text-red-700" : "text-black"}`}>{userFeedback}</p>}
+            <form className="flex flex-col gap-8" onSubmit={handleSubmit} >
+                <div>
                 <input className="border-2 border-yellow-300 rounded-md p-2 mr-4"
                 type="text" 
                 placeholder="username" 
@@ -47,12 +69,13 @@ const Loginpage = () => {
                 placeholder="password" 
                 name="password" 
                 ref={passwordRef}  />
-
-                <button className="bg-green-400 py-2 px-5 rounded-2xl" >Log In</button>
+                </div>
+                <div>
+                <button className="bg-green-400 text-white py-2 px-5 rounded-2xl border -4 border-yellow-300" >Log In</button>
 
                 {/* register button for new users */}
-                <button className="bg-blue-400 py-2 px-5 rounded-2xl ml-4" type="button" onClick={handleRegister}>Register</button>
-
+                <button className="bg-blue-400 text-white py-2 px-5 rounded-2xl ml-4 border -4 border-yellow-300" type="button" onClick={handleRegister}>Register</button>
+                </div>
             </form>
 
         </div>

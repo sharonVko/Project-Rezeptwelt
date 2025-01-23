@@ -34,7 +34,7 @@ const Hero: React.FC<HeroProps> = ({ heroProps }) => {
       <h3 className="px-24 text-white text-xl font-semibold">
         {heroProps?.name
           ? `${heroProps.name}`
-          : "Lassen Sie sich inspirieren, kochen Sie mit Leidenschaft und erleben Sie unvergessliche Momente bei Tisch."}
+          : (<>Lassen Sie sich inspirieren, kochen Sie mit <br/> Leidenschaft und erleben Sie unvergessliche <br/> Momente bei Tisch.</>)}
       </h3>
     </section>
   );

@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import Hero from "./Hero";
+import { Tables } from "../utils/database";
 
-const HeaderNav = () => {
+interface HeaderNavProps { heroProps?: Tables<'recipes'> | null; }
+
+const HeaderNav:React.FC<HeaderNavProps> = ({heroProps}) => {
     return ( 
         <>
         <header className="bg-yellow-300 pt-4">
@@ -15,7 +18,7 @@ const HeaderNav = () => {
             </nav>
             </div>
         </header>
-        <Hero/>
+        <Hero heroProps={heroProps}/>
         </>
      );
 }

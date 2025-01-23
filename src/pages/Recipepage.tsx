@@ -40,8 +40,8 @@ const Recipepage = () => {
     return ( 
         <div className="recipepage p-4 text-center">
             <FavoriteRecipesSection/>
-            <section className="latestsection">
-                <h3>Neueste Rezepte</h3>
+                <h2 className="headline font-bold text-[1.5rem] pb-6" >Neueste Rezepte</h2>
+            <section className="latestsection pl-6">
                 {loading ? (
                     <p>Our latest Recipes are loading ☕️ ... </p>
                 ) : (

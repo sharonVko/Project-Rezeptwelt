@@ -24,7 +24,7 @@ const Hero: React.FC<HeroProps> = ({ heroProps }) => {
 
   return (
     <section
-      className="hero py-20 text-center mb-8"
+      className="hero py-24 text-center mb-8"
       style={{ backgroundImage: `url(${backgroundImage})`,
         backgroundPosition: 'center',
         backgroundSize: 'cover',

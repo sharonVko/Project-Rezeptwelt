@@ -27,7 +27,10 @@ const Loginpage = () => {
             setUser(result.data.user);
             setUserFeedback("Willkommen zurück! Dein Login war erfolgreich.");
             setIsError(false);
-            navigate('dashboard'); // wenn erfolgreich -> Wechsel zu userprofiledashboard
+            setTimeout(() => {
+                navigate('dashboard');
+            }, 4000);
+             // wenn erfolgreich -> Wechsel zu userprofiledashboard
         } else {
             console.error('Login failed',result.error);
             setUserFeedback("Sorry! Der Login ist fehlgeschlagen.Bitte überprüfe dein Passwort und deine e-mail Adresse.");

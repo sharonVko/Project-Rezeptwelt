@@ -43,7 +43,10 @@ const SignUp = () => {
         if (result.data.user) {
             setUserFeedback("Glückwunsch!Die Registrierung war erfolgreich!");
             setIsError(false)
-            navigate('/dashboard')
+            setTimeout(()=> {
+                navigate('dashboard')
+            }, 4000);
+
         } else {
             console.error('Registration failed',result.error);
             setUserFeedback("Sorry, die Registrierung ist fehlgeschlagen!");
@@ -52,8 +55,10 @@ const SignUp = () => {
     }
 
     return ( 
-        <div>
-            <form onSubmit={handleRegister}>
+        <div className="text-center border border-gray-600 rounded-lg p-6 mx-36">
+            {userFeedback && <p className={`text-xl font-semibold mb-4 ${isError? "text-red-700" : "text-green-600"}`}>{userFeedback}</p>}
+            <form className="" onSubmit={handleRegister}>
+                <div className="text-start pl-20">
                 <div>
                     <label htmlFor="user_name">Username</label>
                     <input type="text" name="user_name"  />
@@ -75,9 +80,10 @@ const SignUp = () => {
                     <label htmlFor="password">Passwort</label>
                     <input type="password" name="password" />
                 </div>
+                </div>   
                 {/* register button for new users */}
                 
-                <button type="submit" className="bg-blue-400 text-white py-2 px-5 rounded-2xl ml-4 border -4 border-yellow-300">Register</button>
+                <button type="submit" className="bg-blue-400 text-white py- px-5 rounded-2xl ml-4 border -4 border-yellow-300 my-6">Register</button>
             </form>
         </div>
      );

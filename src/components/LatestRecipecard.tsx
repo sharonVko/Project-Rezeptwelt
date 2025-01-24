@@ -12,7 +12,7 @@ const LatestRecipecard:React.FC<ILatestRecipecardProps> = ({latestRecipe}) => {
                 <div className="bg-slate-100 text-start pl-6 pt-12 pr-14 rounded-r-3xl">
                     <p className="text-lg font-semibold pb-4">{latestRecipe.name}</p>
                     <p className="text-xs pb-8">{latestRecipe.description}</p>
-                    <Link className="btn-yell bg-yellow-300 py-2 px-5 rounded-2xl" to={`/details/${latestRecipe.id}`}>Zum Rezept</Link>
+                    <Link className="btn-yellow" to={`/details/${latestRecipe.id}`}>Zum Rezept</Link>
                 </div>
         </article>
      );

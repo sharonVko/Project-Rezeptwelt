@@ -9,6 +9,7 @@ import Detailpage from './pages/Detailpage'
 import Loginpage from './pages/Loginpage'
 import { UserProvider } from './UserContext'
 import UserDashboard from './pages/UserDashboard'
+import SignUp from './pages/SignUp'
 
 function App() {
   
@@ -24,6 +25,7 @@ function App() {
       <Route path='aboutUs' element={<AboutUs/>}/>
       <Route path='details/:recipe_id' element={<Detailpage/>}/>
       <Route path='login' element={<Loginpage/>}/>
+      <Route path='signup' element={<SignUp/>}/>
       <Route path='dashboard' element={<UserDashboard/>}/>
 
 

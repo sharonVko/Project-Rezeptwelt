@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { supabase } from "../utils/setupSupabase";
 import { useUserContext } from "../UserContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Loginpage = () => {
@@ -27,7 +27,7 @@ const Loginpage = () => {
             setUser(result.data.user);
             setUserFeedback("Willkommen zurück! Dein Login war erfolgreich.");
             setIsError(false);
-            navigate('/'); // wenn erfolgreich -> Wechsel zu home
+            navigate('dashboard'); // wenn erfolgreich -> Wechsel zu userprofiledashboard
         } else {
             console.error('Login failed',result.error);
             setUserFeedback("Sorry! Der Login ist fehlgeschlagen.Bitte überprüfe dein Passwort und deine e-mail Adresse.");
@@ -36,7 +36,7 @@ const Loginpage = () => {
         // was auch immer wir zurückbekommen, wir loggen es
         console.dir(result)
     };
-    const handleRegister = async () => {
+    /* const handleRegister = async () => {
         const result = await supabase.auth.signUp({
             email: usernameRef.current.value,
             password: passwordRef.current.value,
@@ -51,7 +51,7 @@ const Loginpage = () => {
             setIsError(false)
         }
         
-    }
+    } */
 
 
     return ( 
@@ -72,9 +72,10 @@ const Loginpage = () => {
                 </div>
                 <div>
                 <button className="bg-green-400 text-white py-2 px-5 rounded-2xl border -4 border-yellow-300" >Log In</button>
-
-                {/* register button for new users */}
-                <button className="bg-blue-400 text-white py-2 px-5 rounded-2xl ml-4 border -4 border-yellow-300" type="button" onClick={handleRegister}>Register</button>
+                <div className="flex gap-2 justify-center py-3">
+                <p>Noch kein User?</p>
+                <Link className="text-blue-600" to={'/signup'}>Registriere dich hier </Link>
+                </div>
                 </div>
             </form>
 

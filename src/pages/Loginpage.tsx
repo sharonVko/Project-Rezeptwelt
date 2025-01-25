@@ -29,7 +29,7 @@ const Loginpage = () => {
             setIsError(false);
             setTimeout(() => {
                 navigate('/dashboard');
-            }, 3000);
+            }, 2000);
              // wenn erfolgreich -> Wechsel zu userprofiledashboard
         } else {
             console.error('Login failed',result.error);

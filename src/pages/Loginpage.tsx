@@ -64,7 +64,7 @@ const Loginpage = () => {
                 <div>
                 <input className="border-2 border-yellow-300 rounded-md p-2 mr-4"
                 type="text" 
-                placeholder="username" 
+                placeholder="Username oder E-mail" 
                 name="username" 
                 ref={usernameRef} />
                 <input className="border-2 border-yellow-300 rounded-md p-2 mr-4"

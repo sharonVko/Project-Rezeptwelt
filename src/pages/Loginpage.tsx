@@ -28,8 +28,8 @@ const Loginpage = () => {
             setUserFeedback("Willkommen zurück! Dein Login war erfolgreich.");
             setIsError(false);
             setTimeout(() => {
-                navigate('dashboard');
-            }, 4000);
+                navigate('/dashboard');
+            }, 3000);
              // wenn erfolgreich -> Wechsel zu userprofiledashboard
         } else {
             console.error('Login failed',result.error);

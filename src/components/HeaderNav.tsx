@@ -25,15 +25,15 @@ const HeaderNav:React.FC<HeaderNavProps> = ({heroProps}) => {
             <div className="bg-white flex items-end justify-between py-3 pl-28 pr-10">
             <img src="/RezeptweltLogo.svg" alt="Logo" />
             <nav className="flex gap-4 font-bold">
-                <Link to={'/'} className={isActive('/') ? 'text-gray-500' : ''}>Home</Link>
-                <Link to={'/recipes'} className={isActive('/recipes') ? 'text-gray-500' : ''}>Rezepte</Link>
-                <Link to={'/aboutUs'} className={isActive('/aboutUs')? 'text-gray-500' : ''}>Über uns</Link>
+                <Link to={'/'} className={isActive('/') ? 'text-yellow-500' : ''}>Home</Link>
+                <Link to={'/recipes'} className={isActive('/recipes') ? 'text-yellow-500' : ''}>Rezepte</Link>
+                <Link to={'/aboutUs'} className={isActive('/aboutUs')? 'text-yellow-500' : ''}>Über uns</Link>
                 {user? (
                     <>
-                    <Link to={'/dashboard'} className={isActive('/dashboard')? 'text-gray-500' : ''}>Dashboard</Link>
+                    <Link to={'/dashboard'} className={isActive('/dashboard')? 'text-yellow-500' : ''}>Dashboard</Link>
                     <button onClick={handleLogout} className="pl-16">Logout</button>
                     </> ) :(
-                <Link to={'/login'} className={isActive('/login') ? 'text-gray-500' : ''} >Login</Link>
+                <Link to={'/login'} className={isActive('/login') ? 'text-yellow-500' : ''} >Login</Link>
                 )}
             </nav>
             </div>

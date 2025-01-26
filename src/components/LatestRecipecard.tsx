@@ -12,7 +12,7 @@ interface ILatestRecipecardProps{
                     <img className="h-full w-full object-cover" src={`${latestRecipe.image_url}`} alt="Food image" />
                 </div>
                 <div className="bg-slate-100 text-start pl-6 pt-12 pr-14 rounded-r-3xl h-full w-full max-w-4xl">
-                    <p className="text-lg font-semibold pb-4">{latestRecipe.name}</p>
+                    <p className="text-xl font-bold pb-4">{latestRecipe.name}</p>
                     <p className="text-xs pb-8">{latestRecipe.description}</p>
                     <Link className="btn-yellow" to={`/details/${latestRecipe.id}`}>Zum Rezept</Link>
                 </div>

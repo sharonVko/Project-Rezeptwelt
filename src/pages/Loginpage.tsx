@@ -59,6 +59,7 @@ const Loginpage = () => {
 
     return ( 
         <div className="p-8 m-6 text-center">
+            <h2 className="headline">Login</h2>
             {userFeedback && <p className={`text-xl font-semibold mb-4 ${isError? "text-red-700" : "text-black"}`}>{userFeedback}</p>}
             <form className="flex flex-col gap-8 bg-yellow-50 shadow-md rounded py-10 mx-32" onSubmit={handleSubmit} >
                 <div>

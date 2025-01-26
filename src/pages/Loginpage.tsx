@@ -58,13 +58,13 @@ const Loginpage = () => {
 
 
     return ( 
-        <div className="p-8 border-2 border-yellow-300 bg-stone-100 rounded-md m-6 text-center">
+        <div className="p-8 m-6 text-center">
             {userFeedback && <p className={`text-xl font-semibold mb-4 ${isError? "text-red-700" : "text-black"}`}>{userFeedback}</p>}
-            <form className="flex flex-col gap-8" onSubmit={handleSubmit} >
+            <form className="flex flex-col gap-8 bg-yellow-50 shadow-md rounded py-10 mx-32" onSubmit={handleSubmit} >
                 <div>
                 <input className="border-2 border-yellow-300 rounded-md p-2 mr-4"
                 type="text" 
-                placeholder="Username oder E-mail" 
+                placeholder="E-mail" 
                 name="username" 
                 ref={usernameRef} />
                 <input className="border-2 border-yellow-300 rounded-md p-2 mr-4"
@@ -76,7 +76,7 @@ const Loginpage = () => {
                 <div>
                 <button className="bg-green-400 text-white py-2 px-5 rounded-2xl border -4 border-yellow-300" >Log In</button>
                 <div className="flex gap-2 justify-center py-3">
-                <p>Noch kein User?</p>
+                <p>Noch kein Mitglied?</p>
                 <Link className="text-blue-600" to={'/signup'}>Registriere dich hier </Link>
                 </div>
                 </div>

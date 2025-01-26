@@ -15,7 +15,7 @@ const FavoriteRecipesSection = () => {
             try {
                 const {data, error} = await supabase.from('recipes')
                 .select('*')
-                .order('created_at')
+                .order('rating',{ascending: false})
                 .limit(3);
                 console.log(data);
                 
@@ -36,13 +36,13 @@ const FavoriteRecipesSection = () => {
 
     return ( 
         <section className="text-center mb-14">
-            <h2 className="headline font-bold text-[1.5rem] pb-6">Die beliebtesten Rezepte</h2>
+            <h2 className="headline">Die beliebtesten Rezepte</h2>
             {loading ? (
                 <p>Your favorite Recipes are loading  ☕️ ...</p>
             ) : (
                 <div className="favcard-sect flex justify-center gap-8">
                 {favRecipes?.map((favRecipe) => (
-                    <div key={favRecipe.rating}>
+                    <div key={favRecipe.id}>
                         <FavoriteRecipeCard favRecipe={favRecipe}/>
                     </div>
             ))}

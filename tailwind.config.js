@@ -38,6 +38,11 @@ export default {
           'border-radius': '1rem', /* rounded-2xl */
           'hover-background-color': '#fb923c', /* hover:bg-orange-500 */
         },
+        '.headline': {
+          'font-weight': 'bold', /* font-bold */
+          'font-size': '1.5rem', /* text-[1.5rem] */
+          'padding-bottom': '1.5rem', /* pb-6 */
+        }
       }, ['responsive', 'hover'])
     }
   ],

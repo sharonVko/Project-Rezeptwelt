@@ -9,7 +9,7 @@ interface HeaderNavProps { heroProps?: Tables<'recipes'> | null; }
 const HeaderNav:React.FC<HeaderNavProps> = ({heroProps}) => {
     const {user, setUser} = useUserContext();
     const navigate = useNavigate();
-    const Location = useLocation();
+    const location = useLocation();
 
     const handleLogout = async() => {
         await supabase.auth.signOut();

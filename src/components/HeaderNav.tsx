@@ -12,6 +12,8 @@ const HeaderNav:React.FC<HeaderNavProps> = ({heroProps}) => {
     const handleLogout = async() => {
         await supabase.auth.signOut();
         setUser(null);
+        console.log('Logout successful');
+        
     }
 
     return ( 

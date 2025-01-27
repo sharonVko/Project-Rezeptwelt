@@ -10,6 +10,7 @@ interface IUserDashboard{
     created_at: string,
     updated_at:string,
     last_sign_in_at: string,
+    user_name: string,
     /* [key:string]:string |number|boolean|null; */ // Flexibilität für das Interface, für zusätzliche Eigenschaften, die nicht festgelegt wurden, aber hinzu kommen könnten
 }
 const UserDashboard = () => {
@@ -42,7 +43,7 @@ useEffect(() => {
             created_at: session?.user.created_at ?? "",
             updated_at: session?.user.updated_at ?? "", 
             last_sign_in_at: session?.user.last_sign_in_at ??  "", // aus auth table
-            
+            user_name: memberData?.user_name ?? "",
         });
         setIsLoading(false);
     }
@@ -55,12 +56,13 @@ useEffect(() => {
         <div className="text-center max-w-md mx-auto">
             <h2 className="headline">Dein Dashboard</h2>         
             <section className="loginfo bg-yellow-50 shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <h2 className="text-xl font-bold text-gray-900">User-Profil</h2>
                 <div className="input-base bg-white flex flex-col gap-3 text-start">
+                <h2 className="text-xl font-bold text-gray-900 text-center">User-Profil</h2>
                 {isLoading ? ( <p>Loading...</p> ) : ( <>
                     <p className="mt-2 text-gray-800"><strong>E-Mail: </strong> {member?.email}</p>
                     <p className="mt-1 text-gray-800"><strong>Vorname: </strong> {member?.first_name}</p>
                     <p className="mt-1 text-gray-800"><strong>Nachname: </strong>{member?.last_name}</p>
+                    <p className="mt-1 text-gray-800"><strong>Username: </strong>{member?.user_name}</p>
                         <div className="mt-4 text-gray-700 text-left">
                             <p className="text-xs"><strong className="text-sm pr-2">Angelegt am:</strong>{member?.created_at}</p>
                             <p className="text-xs"><strong className=" text-sm pr-2">Zuletzt geändert am:</strong>{member?.updated_at}</p>

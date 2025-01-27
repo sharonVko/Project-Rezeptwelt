@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
 import { supabase } from "../utils/setupSupabase";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../UserContext";
 //wir schreiben den type hier bevor wir die datasupabase aktualisieren
 type TUser = {
     email: string,
@@ -20,6 +21,7 @@ const SignUp = () => {
     const [isError, setIsError] = useState<boolean>(false);
 
     const navigate = useNavigate();
+    const {setUser} = useUserContext();
 
     const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -41,6 +43,7 @@ const SignUp = () => {
         console.log(result);
         
         if (result.data.user) {
+            setUser(result.data.user)
             setUserFeedback("Glückwunsch!Die Registrierung war erfolgreich!");
             setIsError(false)
             setTimeout(()=> {
@@ -55,7 +58,7 @@ const SignUp = () => {
     }
 
     return ( 
-        <div className="text-center p-6 mx-36">
+        <div className="text-center p-6 mx-36 h-[800px]">
             <h3 className="font-semibold text-center pb-4">Sign up</h3>
             {userFeedback && <p className={`text-xl font-semibold mb-4 ${isError? "text-red-700" : "text-green-600"}`}>{userFeedback}</p>}
             <form className="bg-yellow-50 shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleRegister}>

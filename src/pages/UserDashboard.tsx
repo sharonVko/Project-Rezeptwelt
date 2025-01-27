@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import CreateRecipeForm from "../components/CreateRecipeForm";
 import { supabase } from "../utils/setupSupabase";
 
+
 interface IUserDashboard{
     email: string,
     first_name: string,
@@ -9,7 +10,7 @@ interface IUserDashboard{
     created_at: string,
     updated_at:string,
     last_sign_in_at: string,
-    [key:string]:string |number|boolean|null;
+    /* [key:string]:string |number|boolean|null; */ // Flexibilität für das Interface, für zusätzliche Eigenschaften, die nicht festgelegt wurden, aber hinzu kommen könnten
 }
 const UserDashboard = () => {
 
@@ -20,36 +21,31 @@ const [isLoading, setIsLoading] = useState<boolean>(true)
 useEffect(() => {
     const getUserInfo = async ()=> {
         setIsLoading(true);
-        const {data: {user}, error: userError} = await supabase.auth.getUser();
-        console.log('Benutzer:', user, 'Fehler:', userError);
-        if (userError || !user) {
-            console.error(userError, 'user not found');
-            setIsLoading(false);
-            return;
-        };
-        console.log('Benutzer-ID:', user.id);
-        const {data: memberData, error: memberError} = await supabase
+        
+        const { data:{session}, error } = await supabase.auth.getSession()// 1. fetch für Daten aus auth users table
+        
+        console.log(session, error);
+        if (session) {
+        const {data:memberData, error: memberError} = await supabase // 2. fetch für Daten aus profiles table
         .from('profiles')
-        .select('*')
-        .eq('id', user.id)
+        .select('*') 
+        .eq('id', session.user.id) 
         .single();
-        console.log('Mitgliedsdaten:', memberData, 'Fehler:', memberError);
-        if(memberError) {
-            console.error(memberError, 'member not found');
-            setIsLoading(false);
-            return;
-        }
+        
+        
+        console.log(memberData, memberError);
 
         setMember({
-            email: user.email ?? "",
-            first_name: memberData?.first_name ?? "",
+            email: session.user.email ?? "",
+            first_name: memberData?.first_name ?? "", // aus profiles table
             last_name: memberData?.last_name ?? "",
-            created_at: user?.created_at ?? "",
-            updated_at: user?.updated_at ?? "", 
-            last_sign_in_at: user.last_sign_in_at ?? "",
+            created_at: session?.user.created_at ?? "",
+            updated_at: session?.user.updated_at ?? "", 
+            last_sign_in_at: session?.user.last_sign_in_at ??  "", // aus auth table
             
         });
         setIsLoading(false);
+    }
     };
     getUserInfo();
 }, []);

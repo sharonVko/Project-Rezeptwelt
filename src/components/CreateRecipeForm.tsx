@@ -109,7 +109,7 @@ const CreateRecipeForm = () => {
 							Foto
 						</label>
 						<input
-							className="input-base"
+							className="input-base lbl-base"
 							id="image"
 							type="file"
 							name="image"

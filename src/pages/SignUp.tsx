@@ -44,7 +44,7 @@ const SignUp = () => {
             setUserFeedback("Glückwunsch!Die Registrierung war erfolgreich!");
             setIsError(false)
             setTimeout(()=> {
-                navigate('dashboard')
+                navigate('/dashboard')
             }, 4000);
 
         } else {

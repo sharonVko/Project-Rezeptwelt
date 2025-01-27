@@ -38,7 +38,7 @@ const Recipepage = () => {
     }, []);
 
     return ( 
-        <div className="recipepage p-4 text-center">
+        <div className="recipepage p-4 text-center h-[1400px]">
             <FavoriteRecipesSection/>
                 <h2 className="headline" >Neueste Rezepte</h2>
             <section className="latestsection pl-6">

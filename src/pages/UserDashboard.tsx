@@ -55,16 +55,16 @@ useEffect(() => {
         <div className="text-center max-w-md mx-auto">
             <h2 className="headline">Dein Dashboard</h2>         
             <section className="loginfo bg-yellow-50 shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <div className="input-base bg-white flex flex-col gap-3">
                 <h2 className="text-xl font-bold text-gray-900">User-Profil</h2>
+                <div className="input-base bg-white flex flex-col gap-3 text-start">
                 {isLoading ? ( <p>Loading...</p> ) : ( <>
-                    <p className="mt-2 text-gray-800"><strong>E-Mail:</strong> {member?.email}</p>
-                    <p className="mt-1 text-gray-800"><strong>Vorname:</strong> {member?.first_name}</p>
-                    <p className="mt-1 text-gray-800"><strong>Nachname:</strong>{member?.last_name}</p>
+                    <p className="mt-2 text-gray-800"><strong>E-Mail: </strong> {member?.email}</p>
+                    <p className="mt-1 text-gray-800"><strong>Vorname: </strong> {member?.first_name}</p>
+                    <p className="mt-1 text-gray-800"><strong>Nachname: </strong>{member?.last_name}</p>
                         <div className="mt-4 text-gray-700 text-left">
-                            <p><strong>Angelegt am:</strong>{member?.created_at}</p>
-                            <p><strong>Zuletzt geändert am:</strong>{member?.updated_at}</p>
-                            <p><strong>Zuletzt eingeloggt am:</strong>{member?.last_sign_in_at}</p>
+                            <p className="text-xs"><strong className="text-sm pr-2">Angelegt am:</strong>{member?.created_at}</p>
+                            <p className="text-xs"><strong className=" text-sm pr-2">Zuletzt geändert am:</strong>{member?.updated_at}</p>
+                            <p className="text-xs"><strong className="text-sm pr-2">Zuletzt eingeloggt am:</strong>{member?.last_sign_in_at}</p>
                         </div> </>
                         )}
                 </div>

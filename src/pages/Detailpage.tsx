@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
 import { supabase } from "../utils/setupSupabase";
 import { Tables } from "../utils/database";
+import FavoriteIcon from "../assets/SVGs/FavoriteIcon";
 
 interface OutletContext { 
     setHeroProps: React.Dispatch<React.SetStateAction<Tables<'recipes'> | null>>; }
@@ -71,7 +72,13 @@ const Detailpage = () => {
         <>
          
           <section className="pl-10">
+            <div className="flex justify-between">
             <h6 className="text-lg font-semibold pb-2">Zutaten</h6>
+            <div className="pr-8 flex items-center gap-3">
+              <p className="text-pink-700 font-semibold">Zu Favoriten hinzufügen</p>
+            <FavoriteIcon/>
+            </div>
+            </div>
             <ul className="pl-4 mb-6" >
               {ingredients?.map((ingredient, index) => (
                 <li className="list-disc" key={index}>

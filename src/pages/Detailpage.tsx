@@ -74,8 +74,8 @@ const Detailpage = () => {
           <section className="pl-10">
             <div className="flex justify-between">
             <h6 className="text-lg font-semibold pb-2">Zutaten</h6>
-            <div className="pr-8 flex items-center gap-3">
-              <p className="text-pink-700 font-semibold">Zu Favoriten hinzufügen</p>
+            <div className="pr-8 flex items-center gap-3 flex-col">
+              <p className="text-lightcoral font-semibold">Zu Favoriten hinzufügen</p>
             <FavoriteIcon/>
             </div>
             </div>

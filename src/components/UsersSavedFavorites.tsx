@@ -34,7 +34,7 @@ const UsersSavedFavorites: React.FC = () => {
             
             const {data, error} = await supabase
             .from('recipe_favorites')
-            .select('recipe_id, recipes(name, description, image_url)' )
+            .select('recipe_id, recipes(id, name, description, image_url)' )
             .eq('user_id', userId);
             
             console.log('fetched data: ', data);
@@ -44,7 +44,13 @@ const UsersSavedFavorites: React.FC = () => {
                 console.error('Error fetching users favorites: ', error);
                 
             } else{
-                const recipes: IUsersRecipeProps[] = data.map((favorite: any) => favorite.recipes);
+                const recipes: IUsersRecipeProps[] = data.map((favorite: any) => ({
+                    id:favorite.recipes.id,
+                    name: favorite.recipes.name,
+                    description: favorite.recipes.description,
+                    image_url: favorite.recipes.image_url 
+                })
+            );
                 setUserFavorites(recipes);
             }
             setLoading(false);

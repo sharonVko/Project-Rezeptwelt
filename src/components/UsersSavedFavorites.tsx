@@ -59,22 +59,23 @@ const UsersSavedFavorites: React.FC = () => {
     }, []);
 
     return ( 
+        <>
+      <h2 className="headline font-bold text-gray-900 text-center pb-3">Deine gespeicherten Favoriten</h2>
         <section className="favorites bg-yellow-50 shadow-md rounded px-8 pt-6 pb-8 mb-4">
-      <h2 className="text-xl font-bold text-gray-900 text-center">Deine Favoriten</h2>
       {loading ? (
         <p>Loading...</p>
       ) : (
         <ul className="favorite-list">
           {userFavorites.map((recipe) => (
-            <li key={recipe.id} className="favorite-item flex gap-4 p-2 bg-white border border-yellow-400 rounded-2xl">
+            <li key={recipe.id} className="favorite-item flex gap-4 p-4 mb-2 bg-white border border-yellow-400 rounded-2xl shadow-lg">
               <img
                 src={recipe.image_url}
                 alt={recipe.name}
-                className="w-20 h-20 object-cover rounded"
+                className="w-20 h-20 object-cover rounded border-2 border-yellow-400"
               />
               <div>
-                <h3 className="text-lg font-semibold">{recipe.name}</h3>
-                <p className="text-gray-700">{recipe.description}</p>
+                <h3 className="text-[1rem] font-semibold">{recipe.name}</h3>
+                <p className=" text-sm text-gray-700 pb-4">{recipe.description}</p>
                 <Link to={`/details/${recipe.id}`} className="btn-yellow">Zum Rezept</Link>
               </div>
             </li>
@@ -82,6 +83,7 @@ const UsersSavedFavorites: React.FC = () => {
         </ul>
       )}
     </section>
+    </>
      );
 }
  

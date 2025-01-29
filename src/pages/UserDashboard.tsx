@@ -56,7 +56,7 @@ useEffect(() => {
     return (
         <div className="text-center max-w-md mx-auto">
             <h2 className="headline">Dein Dashboard</h2>         
-            <section className="loginfo bg-yellow-50 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <section className="loginfo bg-yellow-50 shadow-md rounded px-8 pt-6 pb-8 mb-8">
                 <div className="input-base bg-white flex flex-col gap-3 text-start">
                 <h2 className="text-xl font-bold text-gray-900 text-center">User-Profil</h2>
                 {isLoading ? ( <p>Loading...</p> ) : ( <>

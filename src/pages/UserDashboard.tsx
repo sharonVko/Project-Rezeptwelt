@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import CreateRecipeForm from "../components/CreateRecipeForm";
 import { supabase } from "../utils/setupSupabase";
+import UsersSavedFavorites from "../components/UsersSavedFavorites";
 
 
 interface IUserDashboard{
@@ -71,7 +72,7 @@ useEffect(() => {
                         )}
                 </div>
             </section>
-      
+        <UsersSavedFavorites />
         <CreateRecipeForm/>
         </div>
     );

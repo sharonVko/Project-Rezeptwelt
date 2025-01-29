@@ -75,8 +75,8 @@ const Detailpage = () => {
             <div className="flex justify-between">
             <h6 className="text-lg font-semibold pb-2">Zutaten</h6>
             <div className="pr-8 flex items-center gap-3 flex-col">
-              <p className="text-lightcoral font-semibold">Zu Favoriten hinzufügen</p>
-            <FavoriteIcon/>
+              <p className="text-black font-semibold">Zu Favoriten hinzufügen</p>
+            <FavoriteIcon recipeId={recipe_id!}/> //test hier
             </div>
             </div>
             <ul className="pl-4 mb-6" >

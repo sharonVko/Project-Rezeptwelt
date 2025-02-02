@@ -1,10 +1,26 @@
 import React, { FormEvent, useRef, useState } from "react";
 import { supabase } from "../utils/setupSupabase";
 
-const CreateRecipeForm = () => {
-  const [addIngredients, setAddIngredients] = useState([
-    { name: "", quantity: 0, unit: "", additional_info: "" },
-  ]);
+type TCreateNewRecipe = {
+	category_id: string;
+	name: string;
+	description: string;
+	instructions: string;
+	servings: number;
+	image_url: string;
+  };
+  
+  type TNewIngredient = {
+	name: string;
+	quantity: number;
+	unit: string;
+	additional_info: string | null;
+  };
+  
+  const CreateRecipeForm = () => {
+	const [addIngredients, setAddIngredients] = useState<TNewIngredient[]>([
+	  { name: "", quantity: 0, unit: "", additional_info: null },
+	]);
   const [isUploaded, setIsUploaded] = useState<string | null>(null);
 
   const categoryRef = useRef<HTMLSelectElement>(null);
@@ -64,7 +80,7 @@ const CreateRecipeForm = () => {
     const instructions = instructionsRef.current?.value || "";
     const servings = servingsRef.current?.value ? parseInt(servingsRef.current.value) : 0;
 
-    const recipe = {
+    const recipe:TCreateNewRecipe = {
       category_id,
       name,
       description,
@@ -165,7 +181,7 @@ const CreateRecipeForm = () => {
             <input
               className="input-base"
               id={`quantity-${index}`}
-              type="text"
+              type="number"
               name="quantity"
               placeholder="Bitte füge eine Menge hinzu"
               value={ingredient.quantity}
@@ -188,6 +204,7 @@ const CreateRecipeForm = () => {
               <option value="tspoon">Teelöffel</option>
               <option value="spoon">Eßlöffel</option>
               <option value="dash">Prise</option>
+              <option value="piece">Stück</option>
             </select>
             
           </div>

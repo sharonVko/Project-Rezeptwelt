@@ -19,7 +19,7 @@ const Recipepage = () => {
             try {
                 const {data, error} = await supabase.from('recipes')
                 .select('*')
-                .order('created_at')
+                .order('created_at', {ascending: false})
                 .limit(3);
                 console.log(data);
                 

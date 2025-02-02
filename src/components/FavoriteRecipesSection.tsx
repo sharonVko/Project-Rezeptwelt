@@ -15,7 +15,7 @@ const FavoriteRecipesSection = () => {
             try {
                 const {data, error} = await supabase.from('recipes')
                 .select('*')
-                .order('rating',{ascending: false})
+                .order('rating',{ascending: true})
                 .limit(3);
                 console.log(data);
                 

@@ -4,19 +4,24 @@ import { supabase } from "../utils/setupSupabase";
 /* policies for recipe and ingredient table are necessary to allow submitting all the different values of the form (data saved in different tables connected through foreign keys) */
 
 type TCreateNewRecipe = {
-	category: string,
+	category_id: string,
 	name: string,
 	description: string,
+	instructions: string,
+	servings: number,
+	image_url: string,
+	
+}
+
+type TNewIngredient = {
+	name: string,
 	quantity: number, 
 	unit: string,
-	instructions: string,
-	servings: number | null,
-	image_url: string,
-	ingredients: { name: string; quantity: number; unit: string; additional_info: string | null, }[];
+	additional_info: string | null,
 }
 
 const CreateRecipeForm = () => {
-	const [addIngredients, setAddIngredients]= useState<{ name: string; quantity: number; unit: string; additional_info: string | null, }[]>([])
+	const [addIngredients, setAddIngredients]= useState<TNewIngredient[]>([])
 	const [isUploaded, setIsUploaded] = useState<string | null> (null);
 
 	const categoryRef = useRef<HTMLSelectElement>(null);
@@ -40,7 +45,7 @@ const CreateRecipeForm = () => {
 		setAddIngredients(updatedIngredients);
 	  };
 
-	  // img in storage laden
+	  // upload img to storage bucket
 	  const handleImgUpload = async (): Promise<string | null> => {
 
 		  const file = imgFileRef.current?.files?.[0];
@@ -73,10 +78,36 @@ const CreateRecipeForm = () => {
 			return;
 		}
 
-		const categoryId = categoryRef.current?.value || '';
+		const category_id = categoryRef.current?.value || '';
+		const name = nameRef.current?.value || '';
+		const description = descRef.current?.value || '';
+		const instructions = instructionsRef.current?.value || '';
+		const servings = servingsRef.current?.value ? parseInt(servingsRef.current.value) : 0;
+
+		const recipe: TCreateNewRecipe = {
+			category_id,
+			name,
+			description,
+			instructions,
+			servings,
+			image_url: imgUrl,
+		};
+
+		const {data:newRecipeData, error: newRecipeError} = await supabase
+		.from('recipes')
+		.insert([recipe])
+		.select('id');
+
+		if (newRecipeError) {
+			alert(`Error saving new recipe: ${newRecipeError.message}`);
+			return;
+		  }
+	  
+		  const recipeId = newRecipeData[0].id;
 	}
 
-	/* insert function für supabase bucket hier! */
+	/* inserting recipe */
+
     return ( 
         <div className="max-w-md mx-auto mt-8 h-[1200px]">
         <h3 className="headline">Erstelle ein neues Rezept</h3>
@@ -118,6 +149,7 @@ const CreateRecipeForm = () => {
 							placeholder="Bitte füge eine Beschreibung hinzu"
 						/>
 					</div>
+					// zutane input hier
                     <div className="mb-4">
 						<label className="lbl-base" htmlFor="quantity">
 							Menge

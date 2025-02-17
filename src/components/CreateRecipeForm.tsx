@@ -80,6 +80,11 @@ type TCreateNewRecipe = {
     const instructions = instructionsRef.current?.value || "";
     const servings = servingsRef.current?.value ? parseInt(servingsRef.current.value) : 0;
 
+	if (isNaN(servings)) {
+		alert("Bitte gib eine gültige Anzahl für die Portionen an.");
+		return;
+	  }
+
     const recipe:TCreateNewRecipe = {
       category_id,
       name,
@@ -119,7 +124,7 @@ type TCreateNewRecipe = {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8 h-[1200px]">
+    <div className="max-w-md mx-auto mt-8 h-[1400px]">
       <h3 className="headline">Erstelle ein neues Rezept</h3>
       <form className="bg-yellow-50 shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={submitNewRecipe}>
         <div className="mb-4">
@@ -170,7 +175,7 @@ type TCreateNewRecipe = {
               className="input-base"
               id={`ingredient-${index}`}
               type="text"
-              name="ingredient"
+              /* name="ingredient" */
               placeholder="Bitte füge eine Zutat hinzu"
               value={ingredient.name}
               onChange={(e) => handleChangedIngredients(index, "name", e.target.value)}
@@ -182,7 +187,7 @@ type TCreateNewRecipe = {
               className="input-base"
               id={`quantity-${index}`}
               type="number"
-              name="quantity"
+              /* name="quantity" */
               placeholder="Bitte füge eine Menge hinzu"
               value={ingredient.quantity}
               onChange={(e) => handleChangedIngredients(index, "quantity", parseInt(e.target.value))}
@@ -193,7 +198,7 @@ type TCreateNewRecipe = {
             <select
               className="input-base"
               id={`unit-${index}`}
-              name="unit"
+              /* name="unit" */
               value={ingredient.unit}
               onChange={(e) => handleChangedIngredients(index, "unit", e.target.value)}
             >
@@ -232,7 +237,7 @@ type TCreateNewRecipe = {
           <input
             className="input-base"
             id="servings"
-            type="text"
+            type="number"
             name="servings"
             placeholder="Bitte füge die Portionenanzahl hinzu"
             ref={servingsRef}

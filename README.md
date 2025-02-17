@@ -21,7 +21,7 @@ To get started with the project, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/rezeptwelt.git
+   git clone git@github.com:sharonVko/Project-Rezeptwelt.git
    ```
 
 2. Navigate to the project directory:
